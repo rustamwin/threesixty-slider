@@ -1,8 +1,6 @@
-# Hi, have now taken on this plugin. It's had a major rewrite. 
+# Hi, have now taken on this plugin. It's had a major rewrite.
 
-![Three Sixty Image slider plugin](https://raw.github.com/Eugene/threesixty-slider/master/assets/360.png)
-
-
+![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/assets/360.png)
 
 Three Sixty Image slider plugin v2.5.0
 =================
@@ -238,7 +236,7 @@ Public methods to control the slider after initialization.
 
 Browsers Supported
 ---------------------
-![Browsers Supported](https://raw.github.com/Eugene/threesixty-slider/master/assets/browser_logos-64.png)
+![Browsers Supported](https://raw.github.com/creativeaura/threesixty-slider/master/assets/browser_logos-64.png)
 
 This plugin is supported in all browsers including our beloved IE 6
 
