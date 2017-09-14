@@ -1,4 +1,4 @@
-Hi, have now taken on this plugin. It's had a major rewrite. 
+# Hi, have now taken on this plugin. It's had a major rewrite. 
 
 ![Three Sixty Image slider plugin](https://raw.github.com/Eugene/threesixty-slider/master/assets/360.png)
 
