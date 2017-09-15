@@ -4,7 +4,7 @@
   "version": "2.5.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Eugene/threesixty-slider.git"
+    "url": "http://github.com/etetlow/threesixty-slider.git"
   },
   "ignore": [
     ".jshintrc",
@@ -25,7 +25,7 @@
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-cssmin": "^2.2.0",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-sass": "^1.0.0",
+    "grunt-sass": "^2.0.0",
     "grunt-contrib-qunit": "~0.5.2",
     "grunt-contrib-uglify": "~1.0.0",
     "grunt-contrib-watch": "~0.6.1",
