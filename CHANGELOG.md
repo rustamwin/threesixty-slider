@@ -1,3 +1,9 @@
+## 2.5.0 (July 12th, 2017)
+- Feature - Made fullscreen an option instead of plugin
+- Feature - Made plugin fully responsive using aspect ratio
+- Feature - Added option for light or dark navigation
+- Feature - Using FontAwesome for navigation and fullscreen button
+
 ## 2.0.5 (Jan 6th, 2015)
 - Fixed typo for AppCongif . [Issue #59](https://github.com/creativeaura/threesixty-slider/issues/59)
 
