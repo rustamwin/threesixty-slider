@@ -7,3 +7,4 @@ node_modules
 .idea
 deploy
 bower_components
+.sass-cache
