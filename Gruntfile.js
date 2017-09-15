@@ -117,12 +117,16 @@ module.exports = function(grunt) {
 	  
 	// Compile Sass
 	sass: {
+		options: {
+			soureceMap: true
+		},
 		dev: {
 			src: 'src/styles/*.scss',
 			dest: 'dist/css/threesixty.unprefixed.css',
-			options: {
-				style: 'expanded'
-			}
+		},
+		dist: {
+			src: 'src/styles/*.scss',
+			dest: 'dist/css/threesixty.unprefixed.css',
 		}
 	},
 	  
