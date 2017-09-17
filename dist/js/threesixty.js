@@ -1,10 +1,10 @@
-/*! threesixty-slider  version 3.0.0 */
-/* http://github.com/Eugene/threesixty-slider.git */
+/*! threesixty-slider  version 2.5.0 */
+/* http://github.com/etetlow/threesixty-slider.git */
 
 /*!
  * 360 degree Image Slider v2.5.0
  * http://gaurav.jassal.me
- *
+ * http://etetlow.co.uk
  * Copyright 2015, gaurav@jassal.me
  * Dual licensed under the MIT or GPL Version 3 licenses.
  *
