@@ -1,7 +1,7 @@
 /*!
  * 360 degree Image Slider v2.5.0
  * http://gaurav.jassal.me
- *
+ * http://etetlow.co.uk
  * Copyright 2015, gaurav@jassal.me
  * Dual licensed under the MIT or GPL Version 3 licenses.
  *
