@@ -276,7 +276,7 @@
 
             base.$el.find(AppConfig.imgList).append(li);
 
-            $(image).load(function () {
+            $(image).on("load", function () {
                 base.imageLoaded();
             });
         };
