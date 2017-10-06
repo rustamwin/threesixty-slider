@@ -1,3 +1,5 @@
+## 2.5.1 (July 12th, 2017)
+- Update JQuery to version 3.
 ## 2.5.0 (July 12th, 2017)
 - Feature - Made fullscreen an option instead of plugin
 - Feature - Made plugin fully responsive using aspect ratio

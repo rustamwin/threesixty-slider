@@ -1,7 +1,7 @@
 {
   "name": "threesixty-slider",
   "description": "360 degree Image Slider",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "repository": {
     "type": "git",
     "url": "http://github.com/etetlow/threesixty-slider.git"
@@ -13,7 +13,7 @@
   "dependencies": {
     "css-reset-and-normalize-sass": "^0.1.2",
     "font-awesome": "^4.7.0",
-    "jquery-1x": "^1.12.1",
+    "jquery": "^3.2.1",
     "screenfull": "^3.3.1"
   },
   "devDependencies": {
