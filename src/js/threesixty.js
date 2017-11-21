@@ -273,32 +273,47 @@
 
             base.$el.find(AppConfig.imgList).append(li);
 
-            $(image).load(function () {
-                base.imageLoaded();
-            });
+            base.imageLoadNext();
         };
 
         /**
-         * @method imageLoaded
+         * @method imageLoadNext
+         * @private
+         * The function load next image or call imagesLoaded()
+         */
+        base.imageLoadNext = function () {
+            AppConfig.loadedImages += 1;
+            if (AppConfig.loadedImages >= AppConfig.totalFrames) {
+                base.imagesLoaded();
+            } else {
+                base.loadImages();
+            }
+        };
+
+        /**
+         * @method imagesLoaded
          * @private
          * The function gets triggers once the image is loaded. We also update
          * the progress percentage in this function.
          */
-        base.imageLoaded = function () {
-            AppConfig.loadedImages += 1;
-            $(AppConfig.progress + ' span').text(Math.floor(AppConfig.loadedImages / AppConfig.totalFrames * 100) + '%');
-            if (AppConfig.loadedImages >= AppConfig.totalFrames) {
-                if (AppConfig.disableSpin) {
-                    frames[0].removeClass('previous-image').addClass('current-image');
-                }
-                $(AppConfig.progress).fadeOut('slow', function () {
-                    $(this).hide();
-                    base.showImages();
-                    base.showNavigation();
+        base.imagesLoaded = function () {
+            var loaded = 0;
+            $.each(frames, function (i, image) {
+                $(image).load(function () {
+                    loaded += 1;
+                    $(AppConfig.progress + ' span').text(Math.floor(loaded / AppConfig.totalFrames * 100) + '%');
+                    if (loaded >= AppConfig.totalFrames) {
+                        if (AppConfig.disableSpin) {
+                            frames[0].removeClass('previous-image').addClass('current-image');
+                        }
+                        $(AppConfig.progress).fadeOut('slow', function () {
+                            $(this).hide();
+                            base.showImages();
+                            base.showNavigation();
+                        });
+                    }
                 });
-            } else {
-                base.loadImages();
-            }
+            });
         };
 
         /**
