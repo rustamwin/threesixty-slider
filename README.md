@@ -22,7 +22,7 @@ e.g. on an e-commerce site to help customers look at products in detail, from an
 Installation
 ---------------------
 
-git clone https://github.com/Eugene/threesixty-slider.git
+git clone https://github.com/etetlow/threesixty-slider.git
 
 npm install -g grunt-cli
 
