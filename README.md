@@ -36,29 +36,29 @@ Example 1
 ---------------------
 ### JavaScript ######
 
-$(document).ready(function() {
-    var product1;
-    product1 = $('.product1').ThreeSixty({
-        totalFrames: 72, // total number of images you have for 360 slider
-        endFrame: 72, // end frame for the auto spin animation
-        currentFrame: 1, // the start frame for auto spin
-        imgList: '.threesixty_images', // selector for image list
-        progress: '.spinner', // selector to show the loading progress
-        imagePath:'assets/product1/', // path to the images
-        filePrefix: 'ipod-', // file prefix if any
-        ext: '.jpg', // extension for the assets
-        height: 265, // height of images
-        width: 400, // width of images
-        navigation: true, // default navigation controls
-        position: 'bottom-center', // position of controls
-        disableSpin: false, // if you want to disable the auto spin
-        responsive: true, // full aspect ratio responsiveness
-        fullscreen: true, // fullscreen capabilities
-        fSBackgroundColor: '#000', // fullscreen background color
-        autoplayDirection: 1, // direction of play
-        zeroPadding: true // if your images are padded to the same number of characters by 0
+    $(document).ready(function() {
+        var product1;
+        product1 = $('.product1').ThreeSixty({
+            totalFrames: 72, // total number of images you have for 360 slider
+            endFrame: 72, // end frame for the auto spin animation
+            currentFrame: 1, // the start frame for auto spin
+            imgList: '.threesixty_images', // selector for image list
+            progress: '.spinner', // selector to show the loading progress
+            imagePath:'assets/product1/', // path to the images
+            filePrefix: 'ipod-', // file prefix if any
+            ext: '.jpg', // extension for the assets
+            height: 265, // height of images
+            width: 400, // width of images
+            navigation: true, // default navigation controls
+            position: 'bottom-center', // position of controls
+            disableSpin: false, // if you want to disable the auto spin
+            responsive: true, // full aspect ratio responsiveness
+            fullscreen: true, // fullscreen capabilities
+            fSBackgroundColor: '#000', // fullscreen background color
+            autoplayDirection: 1, // direction of play
+            zeroPadding: true // if your images are padded to the same number of characters by 0
+        });
     });
-});
 
 ### HTML Snippet ######
 
