@@ -1,3 +1,11 @@
+## 2.5.2 (March 12th, 2018)
+- updated load method to comply with jQuery
+- improved resize and responsive methods to give true aspect ratio responsiveness.
+  threesixty will now make itself as large as it can within the restrictions of the parent element.
+- improved upon the fullscreen and added fullscreen background color choice
+- massively improved upon the navigation controls and added option of placement
+- improved speed of image loading
+- added alt to images to comply with W3C directives
 ## 2.5.1 (July 12th, 2017)
 - Update JQuery to version 3.
 ## 2.5.0 (July 12th, 2017)

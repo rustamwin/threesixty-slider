@@ -1,8 +1,8 @@
-/*! threesixty-slider  version 2.5.0 */
+/*! threesixty-slider  version 2.5.2 */
 /* http://github.com/etetlow/threesixty-slider.git */
 
 /*!
- * 360 degree Image Slider v2.5.0
+ * 360 degree Image Slider v2.5.2
  * http://gaurav.jassal.me
  * http://etetlow.co.uk
  * Copyright 2015, gaurav@jassal.me
@@ -62,7 +62,7 @@
         var base = this,
             AppConfig,
             frames = [],
-            VERSION = '2.5.0';
+            VERSION = '2.5.2';
         // Access to jQuery and DOM versions of element
         /**
          * @property {$el}
@@ -106,6 +106,26 @@
             base.loadImages();
         };
 
+        /*
+         * @method maxHeight
+         * Function calculates the maximum possible height of the parent element
+         *
+         */
+
+        base.maxHeight = function (container) {
+            var offset = base.el.offset(),
+    			top = offset.top,
+                yOffset = window.pageYOffset,
+    			total = $(window).height(),
+                distance = top - yOffset,
+    			maxHeight = total - distance;
+
+            if (yOffset === 0 || top === 'undefined') {
+                maxHeight = 'undefined';
+            }
+            return maxHeight;
+        };
+
         /* @method resize
          * Function to make sure the slider fits.
          */
@@ -114,28 +134,32 @@
                 ah = AppConfig.height,
                 lr = ah / aw,
                 pr = aw / ah,
-                wiw = $(window).innerWidth(),
-                wih = $(window).innerHeight();
-            if (aw > wiw) {
-                base.$el.css({
-                    width: wiw + 'px',
-                    height: (wiw * lr) + 'px'
-                });
-            } else if (ah > wih) {
-                base.$el.css({
-                    height: wih + 'px',
-                    width: (wih * pr) + 'px'
-                });
-            }
-        };
+                pw = base.el.parent().width(),
+                ph = base.el.parent().height(),
+                maxHeight = base.maxHeight(),
+                altWidth = $(window).width(),
+                altHeight = $(window).height(),
+                sum = pw * lr;
 
-        /* @method theme
-         * Function to allow theme.
-         */
-        base.theme = function () {
-            var theme = AppConfig.theme;
-            if (theme === 'light') {
-                $('.threesixty').removeClass('dark').addClass('light');
+            if (pw > altWidth) {
+                pw = altWidth;
+            }
+            if (ph > altHeight) {
+                ph = altHeight;
+            }
+            if (maxHeight === 0 || maxHeight === 'undefined') {
+                maxHeight = altHeight;
+            }
+            if ((pw * lr) > maxHeight) {
+                base.$el.css({
+                    height: maxHeight + 'px',
+                    width: (maxHeight * pr) + 'px'
+                });
+            } else {
+                base.$el.css({
+                    width: pw + 'px',
+                    height: sum + 'px'
+                });
             }
         };
 
@@ -148,36 +172,45 @@
         base.responsive = function () {
             if (AppConfig.responsive) {
                 var aw = AppConfig.width,
-                    ah = AppConfig.height,
-                    lr = ah / aw,
-                    pr = aw / ah,
-                    wiw = $(window).innerWidth(),
-                    wih = $(window).innerHeight(),
-                    slr = wih / wiw,
-                    aaw = base.$el.width(),
-                    aah = base.$el.height();
-                if (aah > wih || aw > ah && lr > slr) {
+                ah = AppConfig.height,
+                lr = ah / aw,
+                pr = aw / ah,
+                pw = base.el.parent().width(),
+                ph = base.el.parent().height(),
+                maxHeight = base.maxHeight(),
+                altWidth = $(window).width(),
+                altHeight = $(window).height();
+
+                if (pw > altWidth) {
+                    pw = altWidth;
+                }
+                if (ph > altHeight) {
+                    ph = altHeight;
+                }
+                if (maxHeight === 0 || maxHeight === 'undefined') {
+                    maxHeight = altHeight;
+                }
+                if ((pw * lr) > maxHeight) {
                     base.$el.css({
-                        height: wih + 'px',
-                        width: (wih * pr) + 'px'
+                        height: maxHeight + 'px',
+                        width: (maxHeight * pr) + 'px'
                     });
-                } else if (aaw > wiw) {
+                } else {
                     base.$el.css({
-                        width: wiw + 'px',
-                        height: (wiw * lr) + 'px'
+                        width: '100%',
+                        height: (pw* lr) + 'px'
                     });
-                } else if (aw > ah && aah < wih) {
-                    base.$el.css({
-                        width: wiw + 'px',
-                        height: (wiw * lr) + 'px'
-                    });
-                } else if (ah > aw && aaw < wiw) {
-                    base.$el.css({
-                        height: wih + 'px',
-                        width: (wih * pr) + 'px'
-                    });
-                }         
+                }        
             }
+        };
+
+        /**
+         * @method fSBackgroundColor
+         * Sets background color when fullscreen
+         */
+        base.fSBackgroundColor = function() {
+            var bgColor = AppConfig.fSBackgroundColor;
+            return bgColor;
         };
 
         /**
@@ -191,43 +224,38 @@
                 pr = aw / ah,
                 wsh = screen.height,
                 wsw = screen.width,
-                slr = wsh / wsw;
+                bgColor = base.fSBackgroundColor;
+
             if (AppConfig.fullscreen) {      
                 var target = base.$el[0];
                 if (screenfull.enabled) {
                     screenfull.toggle(target);
-                    $('html').toggleClass('fullScreen');
-                    $('#fs').toggleClass('on off');
-                    if (AppConfig.responsive === false) {
-                        if ($('html').hasClass('fullScreen')) {
-                            screenfull.on('change', function() {
-                                if (aw > ah && lr < slr) {
-                                    base.$el.css({
-                                        width: wsw + 'px',
-                                        height: (wsw * lr) + 'px'
-                                    });
-                                } else if (ah > aw) {
-                                    base.$el.css({
-                                        height: wsh + 'px',
-                                        width: (wsh * pr) + 'px'
-                                    });
-                                } else if (aw > ah && lr > slr) {
-                                    base.$el.css({
-                                        height: wsh + 'px',
-                                        width: (wsh * pr) + 'px'
-                                    });
-                                }
-                            });
-                        } else {
-                            screenfull.on('change', function() {
+                    screenfull.onchange(function() {
+                        if (screenfull.isFullscreen) {
+                            $('.btnFull span').removeClass('icon-fullscreen').addClass('icon-resize');
+                            if ((wsw * lr) > wsh) {
                                 base.$el.css({
-                                    width: aw + 'px',
-                                    height: ah + 'px'
+                                    height: wsh + 'px',
+                                    width: (wsh * pr) + 'px',
+                                    backgroundColor: bgColor
                                 });
-                                base.resize();
+                            } else {
+                                base.$el.css({
+                                    width: wsw + 'px',
+                                    height: (wsw * lr) + 'px',
+                                    backgroundColor: bgColor
+                                });
+                            }
+                        } else {
+                            $('.btnFull span').removeClass('icon-resize').addClass('icon-fullscreen');
+                            base.$el.css({
+                                width: aw + 'px',
+                                height: ah + 'px',
+                                backgroundColor: ''
                             });
+                            base.resize();
                         }
-                    }
+                    });
                 }
             }
         };
@@ -270,38 +298,53 @@
             imageName = !AppConfig.imgArray ?
                 AppConfig.domain + AppConfig.imagePath + AppConfig.filePrefix + base.zeroPad((AppConfig.loadedImages + baseIndex)) + AppConfig.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '') :
                 AppConfig.imgArray[AppConfig.loadedImages];
-            image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
+            image = $('<img>').attr('src', imageName).attr('alt', '360 Slider Images').addClass('previous-image normal').appendTo(li);
 
             frames.push(image);
 
             base.$el.find(AppConfig.imgList).append(li);
 
-            $(image).on("load", function () {
-                base.imageLoaded();
-            });
+            base.imageLoadNext();
         };
 
         /**
-         * @method imageLoaded
+         * @method imageLoadNext
+         * @private
+         * The function load next image or call imagesLoaded()
+         */
+        base.imageLoadNext = function () {
+            AppConfig.loadedImages += 1;
+            if (AppConfig.loadedImages >= AppConfig.totalFrames) {
+                base.imagesLoaded();
+            } else {
+                base.loadImages();
+            }
+        };
+
+        /**
+         * @method imagesLoaded
          * @private
          * The function gets triggers once the image is loaded. We also update
          * the progress percentage in this function.
          */
-        base.imageLoaded = function () {
-            AppConfig.loadedImages += 1;
-            $(AppConfig.progress + ' span').text(Math.floor(AppConfig.loadedImages / AppConfig.totalFrames * 100) + '%');
-            if (AppConfig.loadedImages >= AppConfig.totalFrames) {
-                if (AppConfig.disableSpin) {
-                    frames[0].removeClass('previous-image').addClass('current-image');
-                }
-                $(AppConfig.progress).fadeOut('slow', function () {
-                    $(this).hide();
-                    base.showImages();
-                    base.showNavigation();
+        base.imagesLoaded = function () {
+            var loaded = 0;
+            $.each(frames, function (i, image) {
+                $(image).on('load', function () {
+                    loaded += 1;
+                    $(AppConfig.progress + ' span').text(Math.floor(loaded / AppConfig.totalFrames * 100) + '%');
+                    if (loaded >= AppConfig.totalFrames) {
+                        if (AppConfig.disableSpin) {
+                            frames[0].removeClass('previous-image').addClass('current-image');
+                        }
+                        $(AppConfig.progress).fadeOut('slow', function () {
+                            $(this).hide();
+                            base.showImages();
+                            base.showNavigation();
+                        });
+                    }
                 });
-            } else {
-                base.loadImages();
-            }
+            });
         };
 
         /**
@@ -351,44 +394,45 @@
          */
         base.showNavigation = function () {
             if (AppConfig.navigation && !AppConfig.navigation_init) { 
-                var nav_bar, next, previous, play_stop, button;
+                var nav_bar, next_btn, next, previous_btn, previous, play_stop_btn, play_stop, full_btn, full, position;
 
-                nav_bar = $('<div/>').attr('class', 'nav_bar');
+                if (AppConfig.position) {
+                    position = AppConfig.position;
+                    nav_bar = $('<div/>').attr('class', 'nav_bar ' + position);
+                } else {
+                    nav_bar = $('<div/').attr('class', 'nav_bar top-right');
+                }
 
-                next = $('<a/>').attr({
-                    'href': '#',
-                    'class': 'nav_bar_next'
-                });
+                previous_btn = $('<div/>').attr('class', 'btnPrev butn');
+                previous = $('<span/>').attr('class', 'icon-back');
+                play_stop_btn = $('<div/>').attr('class', 'btnPlay butn');
+                play_stop = $('<span/>').attr('class', 'icon-play');
+                next_btn = $('<div/>').attr('class', 'btnNext butn');
+                next = $('<span/>').attr('class', 'icon-forward');
 
-                previous = $('<a/>').attr({
-                    'href': '#',
-                    'class': 'nav_bar_previous'
-                });
-
-                play_stop = $('<a/>').attr({
-                    'href': '#',
-                    'class': 'nav_bar_play'
-                });
-
-                nav_bar.append(previous);
-                nav_bar.append(play_stop);
-                nav_bar.append(next);
-                base.$el.prepend(nav_bar);
-
-                next.bind('mousedown touchstart', base.next);
-                previous.bind('mousedown touchstart', base.previous);
-                play_stop.bind('mousedown touchstart', base.play_stop);
+                previous_btn.append(previous);
+                play_stop_btn.append(play_stop);
+                next_btn.append(next);
+                nav_bar.append(previous_btn);
+                nav_bar.append(play_stop_btn);
+                nav_bar.append(next_btn);
 
                 if (AppConfig.fullscreen) {
-                    button = $('<a/>').attr({
-                        'id': 'fs',
-                        'class': 'off',
-                        'href': '#' 
-                    });
-                    base.$el.append(button);
-                    button.bind('mousedown touchstart', base.fullscreen);
+                    full_btn = $('<div/>').attr('class', 'btnFull butn');
+                    full = $('<span/>').attr('class', 'icon-fullscreen');
+                    full_btn.append(full);
+                    nav_bar.append(full_btn);
                 }
-                base.theme();
+
+                base.$el.prepend(nav_bar);
+
+                next_btn.bind('mousedown touchstart', base.next);
+                previous_btn.bind('mousedown touchstart', base.previous);
+                play_stop_btn.bind('mousedown touchstart', base.play_stop);
+
+                if (AppConfig.fullscreen) {
+                    full_btn.bind('mousedown touchstart', base.fullscreen);
+                }
                 AppConfig.navigation_init = true;
             }
         };
@@ -407,10 +451,10 @@
             if (!AppConfig.autoplay) {
                 AppConfig.autoplay = true;
                 AppConfig.play = setInterval(base.moveToNextFrame, AppConfig.playSpeed);
-                $(event.currentTarget).removeClass('nav_bar_play').addClass('nav_bar_stop');
+                $('.btnPlay span').removeClass('icon-play').addClass('icon-pause');
             } else {
                 AppConfig.autoplay = false;
-                $(event.currentTarget).removeClass('nav_bar_stop').addClass('nav_bar_play');
+                $('.btnPlay span').removeClass('icon-pause').addClass('icon-play');
                 clearInterval(AppConfig.play);
                 AppConfig.play = null;
             }
@@ -919,15 +963,21 @@
              */
             navigation: false,
             /**
-             * @cfg {String} theme [dark]
-             * Choose Light or Dark for navigation and fullscreen buttons
+             * @cfg {string} position[top-right]
+             * Positioning of navigation.
+             * Options are top-left, top-center, top-right, bottom-right, bottom-center, bottom-left.
              */
-            theme: 'dark',
+            position: 'top-right',
             /**
              * @cfg {Boolean} fullscreen [false]
              * FullScreen now an option instead of plugin
              */
             fullscreen: false,
+            /**
+             * @cfg {string} fSBackgroundColor [white]
+             * Set color of background in FullScreen (css style)
+             */
+            fSBackgroundColor: '#fff',
             /**
              * @cfg {Boolean} autoplay[false]
              * Autoplay the 360 animation
