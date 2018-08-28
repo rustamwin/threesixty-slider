@@ -1,0 +1,41 @@
+{
+  "name": "threesixty-slider",
+  "description": "360 degree Image Slider",
+  "version": "2.5.2",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/rustamwin/threesixty-slider.git"
+  },
+  "ignore": [
+    ".jshintrc",
+    ".editorconfig"
+  ],
+  "dependencies": {
+    "css-reset-and-normalize-sass": "^0.1.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "screenfull": "^3.3.1"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.0",
+    "grunt": "^1.0.0",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-banner": "^0.6.0",
+    "grunt-contrib-clean": "1.1.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^2.2.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-qunit": "^3.0.1",
+    "grunt-contrib-uglify": "^3.4.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-open": "^0.2.3",
+    "grunt-sass": "^3.0.1",
+    "load-grunt-tasks": "^4.0.0",
+    "qunitjs": "~1.14.0",
+    "serve-static": "^1.12.3"
+  },
+  "scripts": {
+    "test": "grunt qunit"
+  }
+}

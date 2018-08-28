@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="content-type" content="text/html; charset-utf-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="shortcut icon" type="image/png" href="favicon.png" />
+<link href="dist/css/threesixty.css" rel="stylesheet">
+</head>
+<body>
+	<div class="threesixty car dark">
+		<div class="spinner">
+			<span>0%</span>
+		</div>
+		<ol class="threesixty_images"></ol>
+	</div>
+<script src="dist/vendor/jquery.min.js"></script>
+<script src="dist/vendor/screenfull.js"></script>
+<script src="dist/js/threesixty.js"></script>
+<script>
+$(document).ready(function() {
+	var three60 = $('.car').ThreeSixty({
+		totalFrames: 100,
+        endFrame: 100,
+        currentFrame: 1,
+        imgList: '.threesixty_images',
+        progress: '.spinner',
+        imagePath:'assets/set1/',
+        filePrefix: '',
+        ext: '.jpg',
+        width: 670,
+        height: 440,
+        navigation: true,
+        fullscreen: true,
+        fSBackgroundColor: '#000',
+        responsive: false,
+        disableSpin: false,
+        autoplayDirection: -1,
+        zeroPadding: true
+        /*totalFrames: 33,
+        endFrame: 33,
+        currentFrame: 1,
+        imgList: '.threesixty_images',
+        progress: '.spinner',
+        imagePath:'assets/hand/',
+        filePrefix: '',
+        ext: '.jpg',
+        width: 500,
+        height: 685,
+        navigation: true,
+        fullscreen: true,
+        responsive: true,
+        disableSpin: false,
+        zeroPadding: false,
+        theme: 'dark'
+        totalFrames: 52,
+        endFrame: 30,
+        currentFrame: 1,
+        imgList: '.threesixty_images',
+        progress: '.spinner',
+        imagePath:'assets/car/',
+        filePrefix: '',
+        ext: '.png',
+        height: 447,
+        width: 1000,
+        navigation: true,
+        fullscreen: true,
+        responsive: true,
+        disableSpin: false,
+        zeroPadding: false,
+        theme: 'dark'*/
+	});
+});
+</script>
+</body>
+</html>
+		
+		
