@@ -4,7 +4,7 @@
   "version": "2.5.2",
   "repository": {
     "type": "git",
-    "url": "http://github.com/etetlow/threesixty-slider.git"
+    "url": "http://github.com/rustamwin/threesixty-slider.git"
   },
   "ignore": [
     ".jshintrc",
@@ -17,22 +17,22 @@
     "screenfull": "^3.3.1"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
+    "connect-livereload": "^0.6.0",
+    "grunt": "^1.0.0",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-banner": "^0.6.0",
     "grunt-contrib-clean": "1.1.0",
     "grunt-contrib-connect": "^1.0.2",
-    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^2.2.0",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-sass": "^2.0.0",
-    "grunt-contrib-qunit": "~0.5.2",
-    "grunt-contrib-uglify": "~1.0.0",
-    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-qunit": "^3.0.1",
+    "grunt-contrib-uglify": "^3.4.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-open": "^0.2.3",
-    "load-grunt-tasks": "^0.6.0",
+    "grunt-sass": "^3.0.1",
+    "load-grunt-tasks": "^4.0.0",
     "qunitjs": "~1.14.0",
-    "connect-livereload": "^0.6.0",
     "serve-static": "^1.12.3"
   },
   "scripts": {
