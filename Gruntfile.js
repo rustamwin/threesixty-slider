@@ -8,6 +8,7 @@ var folderMount = function(connect, dir) {
 };
 
 module.exports = function(grunt) {
+	sass = require('node-sass');
   require('load-grunt-tasks')(grunt);
   // Project configuration.
   grunt.initConfig({
@@ -118,6 +119,7 @@ module.exports = function(grunt) {
 	// Compile Sass
 	sass: {
 		options: {
+			implementation: sass,
 			soureceMap: true
 		},
 		dev: {
